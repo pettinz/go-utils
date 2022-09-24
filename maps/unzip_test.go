@@ -1,7 +1,6 @@
 package maps_test
 
 import (
-	"reflect"
 	"testing"
 
 	"github.com/pettinz/go-utils/maps"
@@ -13,14 +12,9 @@ func TestUnzip(t *testing.T) {
 		"key2": "value2",
 	}
 
-	want_k := []string{"key1", "key2"}
-	want_v := []string{"value1", "value2"}
-	got_k, got_v := maps.Unzip(m)
+	k, v := maps.Unzip(m)
 
-	if !reflect.DeepEqual(got_k, want_k) {
-		t.Errorf("got keys %v, want keys %v", got_k, want_k)
-	}
-	if !reflect.DeepEqual(got_v, want_v) {
-		t.Errorf("got keys %v, want keys %v", got_v, want_v)
+	if !(m[k[0]] == v[0] && m[k[1]] == v[1]) {
+		t.Errorf("got keys %v, %v on %v", k, v, m)
 	}
 }
